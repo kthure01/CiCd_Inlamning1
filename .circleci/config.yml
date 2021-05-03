@@ -13,12 +13,18 @@ jobs:
           name: Install dependencies
           command: pip3 install -r requirements.txt
 
-    # Define the test step
-    test:
-      working_directory: ~/repo
+  # Define the test step
+  test:
+    working_directory: ~/repo
 
-      docker:
-        - image: circleci/python:3.9
+    docker:
+      - image: circleci/python:3.9
+
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: pip3 install -r requirements.txt
 
       - run:
           name: Run style checking
@@ -29,13 +35,12 @@ jobs:
           command: pytest -v
 
 workflows:
+  version: 2
   build_and_test:
     jobs:
       - build
-        filters:
-          branches:
-            only: main
 
       - test:
+          # Only run the tests if the build step succeeded
           requires:
             - build
