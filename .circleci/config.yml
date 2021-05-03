@@ -2,6 +2,7 @@ version: 2
 jobs:
   # Define the build step to check if build is possible
   build:
+    name: TESTING
     working_directory: ~/repo
 
     docker:
