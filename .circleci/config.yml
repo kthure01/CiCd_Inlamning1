@@ -1,6 +1,7 @@
 version: 2
 jobs:
   build:
+    # Only continue if branch is main
     branches:
       only: main
 
