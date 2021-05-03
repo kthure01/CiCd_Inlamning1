@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  only_build_if_main:
+  build:
     branches:
       only: main
 
