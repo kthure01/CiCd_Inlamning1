@@ -3,7 +3,8 @@ jobs:
   build:
     filters:
       branches:
-        only: main
+        only:
+          - main
 
     docker:
       - image: circleci/python:3.9
