@@ -1,23 +1,24 @@
 version: 2
 jobs:
-  build:
+  only_build_if_main:
     branches:
       only: main
+
+    working_directory: ~/repo
 
     docker:
       - image: circleci/python:3.9
 
-    working_directory: ~/repo
-
     steps:
       - checkout
       - run:
-          name: install dependencies
-          command: |
-            pip3 install -r requirements.txt
+          name: Install dependencies
+          command: pip3 install -r requirements.txt
 
       - run:
-          name: run tests
-          command: |
-            flake8 --exclude=env* --statistics
-            pytest -v
+          name: Run style checking
+          command: flake8 --exclude=env* --statistics
+
+      - run:
+          name: Running tests
+          command: pytest -v
