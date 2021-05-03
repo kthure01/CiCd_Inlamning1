@@ -1,10 +1,7 @@
 version: 2
 jobs:
+  # Define the build step to check if build is possible
   build:
-    # Only continue if branch is main
-    branches:
-      only: main
-
     working_directory: ~/repo
 
     docker:
@@ -16,6 +13,13 @@ jobs:
           name: Install dependencies
           command: pip3 install -r requirements.txt
 
+    # Define the test step
+    test:
+      working_directory: ~/repo
+
+      docker:
+        - image: circleci/python:3.9
+
       - run:
           name: Run style checking
           command: flake8 --exclude=env* --statistics
@@ -23,3 +27,15 @@ jobs:
       - run:
           name: Running tests
           command: pytest -v
+
+workflows:
+  build_and_test:
+    jobs:
+      - build
+        filters:
+          branches:
+            only: main
+
+      - test:
+          requires:
+            - build
