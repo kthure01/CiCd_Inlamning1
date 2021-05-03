@@ -17,3 +17,4 @@ def test_subtract_method():
     assert 1 == calculator.subtract(1, 0)
     assert 2 == calculator.subtract(2, 0)
     assert 1 == calculator.subtract(2, 1)
+    assert 1 == calculator.subtract(3, 2)
