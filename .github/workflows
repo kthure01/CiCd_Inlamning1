@@ -1,5 +1,7 @@
 on:
-  # Used by GitHub to trigger the workflow on pull request.
-      branches:
+  # Trigger the workflow on pull request.
+  pull_request:
+    types: [closed]
+    branches:
       - main
       - master
