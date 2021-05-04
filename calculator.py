@@ -1,3 +1,6 @@
+# Detta är en enkel app med några funktioner för att
+# kunna visa en implementation av ett testförfarande
+#
 def addition(x, y):
     return x + y
 
