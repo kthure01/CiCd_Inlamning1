@@ -18,7 +18,10 @@ jobs:
       # Install all dependencies
       - run:
           name: Install dependencies
-          command: pip3 install -r requirements.txt
+          command: |
+            python3 -m venv install venv
+            source venv/bin/activate
+            pip3 install -r requirements.txt
 
       # Used in optimization
       - save_cache:
@@ -44,7 +47,10 @@ jobs:
       # Install all dependencies
       - run:
           name: Install dependencies
-          command: pip3 install -r requirements.txt
+          command: |
+            python3 -m venv install venv
+            source venv/bin/activate
+            pip3 install -r requirements.txt
 
       # Check if code style is ok
       - run:
