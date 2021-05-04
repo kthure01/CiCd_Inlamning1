@@ -8,12 +8,19 @@ jobs:
       - image: circleci/python:3.9
 
     steps:
+      # Fetch the repo
       - checkout
+
+      # Used in optimization
       - restore_cache:
           key: ec1-{{ .Branch }}-{{ checksum "requirements.txt" }}
+
+      # Install all dependencies
       - run:
           name: Install dependencies
           command: pip3 install -r requirements.txt
+
+      # Used in optimization
       - save_cache:
           key: ec1-{{ .Branch }}-{{ checksum "requirements.txt" }}
           paths:
@@ -27,21 +34,24 @@ jobs:
       - image: circleci/python:3.9
 
     steps:
+      # Fetch the repo
       - checkout
+
+      # Used in optimization
       - restore_cache:
             key: ec1-{{ .Branch }}-{{ checksum "requirements.txt" }}
+
+      # Install all dependencies
       - run:
           name: Install dependencies
           command: pip3 install -r requirements.txt
-      - save_cache:
-          key: ec1-{{ .Branch }}-{{ checksum "requirements.txt" }}
-          paths:
-            - venv
 
+      # Check if code style is ok
       - run:
           name: Run style checking
           command: flake8 --exclude=env* --statistics
 
+      # Run the unit tests
       - run:
           name: Running tests
           command: pytest -v
