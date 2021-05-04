@@ -1,0 +1,5 @@
+on:
+  # Used by GitHub to trigger the workflow on pull request.
+      branches:
+      - main
+      - master
