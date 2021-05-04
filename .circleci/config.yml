@@ -9,9 +9,15 @@ jobs:
 
     steps:
       - checkout
+      - restore_cache:
+          key: ec1-{{ .Branch }}-{{ checksum "requirements.txt" }}
       - run:
           name: Install dependencies
           command: pip3 install -r requirements.txt
+      - save_cache:
+          key: ec1-{{ .Branch }}-{{ checksum "requirements.txt" }}
+          paths:
+            - venv
 
   # Define the test step
   test:
