@@ -39,6 +39,12 @@ workflows:
   build_and_test:
     jobs:
       - build
+        # Only run this build step if branch is main or master
+          filters:
+            branches:
+              only:
+                - main
+                - master
 
       - test:
           # Only run the tests if the build step succeeded
