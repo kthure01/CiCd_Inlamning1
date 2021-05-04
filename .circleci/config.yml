@@ -39,7 +39,7 @@ jobs:
 
       # Used in optimization
       - restore_cache:
-            key: ec1-{{ .Branch }}-{{ checksum "requirements.txt" }}
+          key: ec1-{{ .Branch }}-{{ checksum "requirements.txt" }}
 
       # Install all dependencies
       - run:
@@ -61,7 +61,7 @@ workflows:
   build_and_test:
     jobs:
       - build:
-        # Only run this build step if branch is main or master
+          # Only run this build step if branch is main or master
           filters:
             branches:
               only:
