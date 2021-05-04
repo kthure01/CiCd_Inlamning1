@@ -9,6 +9,7 @@ def test_add_method():
     assert 2 == calculator.addition(1, 1)
     assert 3 == calculator.addition(1, 2)
     assert 3 == calculator.addition(2, 1)
+    assert 3 == calculator.addition(1, 2)
 
 
 def test_subtract_method():
