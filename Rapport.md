@@ -29,21 +29,26 @@ Nu gör en första synkning mot GitHub med:
 
 Efter detta så gör jag en enkel kalkylator-app i Python med tillhörande tester.
 Appen finns i **_calculator.py_** och testarna ligger i **_test_calculator.py_**. Även dessa
-filer ”pushas” till GitHub.
+filer ”pushas” också till GitHub.
 
 För att kolla om appen följer en vedertagen kodstandard så installerar jag en
 modul till Python som heter **_flake8_**. Jag installerar även modulen **_pytest_** som kör
 de tester jag skapat för appen.
+Kommandot för att installera modulerna är: `pip install -r requirements.txt`
 Kommandot för att testa kodstandarden är: `flake8 <app_file_name>`
+
+Tester fungerar så att man skapar testfunktioner som i sin tur anropar den testade funktionen
+i huvudprogrammet med olika värden. Att funktionen returnerar det förväntade kollar man via
+ett **_assert_**-uttryck. 
 Kommandot för att köra testerna är: `pytest -v <test_file_name>`
 
 
 För att bygga applikationen och köra tester på den så använder jag mig av verktyget
 [CircleCi](https://circleci.com/). Jag har kopplat ihop mina konton på GitHub och CircleCi.
-Detta gör att jag då enkelt kan välja mitt GitHub-repo och sedan skapa en konfigurationsfil **_config.yml_**
-som jag sedan lägger in på mitt repo. I denna fil så skapar jag olika jobb som jag sedan kör
-i sektionen "workflows". Jag har valt att skapa ett jobb som jag kallar **_build_** och ett som
-jag kallar **_test_**.
+Detta gör att jag då enkelt kan välja mitt GitHub-repo och sedan skapa en konfigurationsfil
+**_config.yml_** som jag sedan lägger in i mitt repo (.circleci/config.yml).
+I denna fil så skapar jag olika jobb som jag sedan kör i sektionen "workflows".
+Jag har valt att skapa ett jobb som jag kallar **_build_** och ett som jag kallar **_test_**.
 För att detta ska triggas igång så måste man ha gjort en manuell pull request från branchen dev till main.
 Vidare så för att testerna ska köras så måste build-jobbet ha gått igenom felfritt annars så kommer
 inte testerna att köras.
